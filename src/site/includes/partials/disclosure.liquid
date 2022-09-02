@@ -1,0 +1,9 @@
+<div x-data="disclosure" x-id="['disclosure']">
+	<button @click="toggle" :aria-expanded="expanded" :aria-controls="$id('disclosure')">
+		Toggle Content
+	</button>
+
+	<p x-show="expanded" :id="$id('disclosure')" x-collapse>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci doloremque doloribus, fugit modi non quas recusandae sapiente veniam voluptates. Ad fugiat illo incidunt omnis perferendis. Ipsa pariatur quo sequi!
+	</p>
+</div>
