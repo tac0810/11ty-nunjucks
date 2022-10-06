@@ -13,7 +13,7 @@
 		<meta property="og:title" content="">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="">
-		<meta property="og:image" content="">
+		<meta property="og:image" content="/assets/images/ogp.png">
 		<meta property="og:site_name" content="">
 		<meta property="fb:app_id" content="">
 		<meta property="og:locale" content="ja_JP">
@@ -37,6 +37,6 @@
 		{% endif %}
 	</head>
 	<body>
-		{{ content }}
+		{{ content | safe }}
 	</body>
 </html>

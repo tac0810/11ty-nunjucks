@@ -1,0 +1,118 @@
+{% macro radio(item) %}
+	<fieldset>
+		<legend>
+			{{ item.label }}
+		</legend>
+		<ul class="flex">
+			{% for data in item.options.data %}
+				<li>
+					<label>
+						<input
+							type="radio"
+							name="{{ item.name }}"
+							value="{{ data.value }}"
+							{% if item.options.initialValue == data.value %}
+								checked
+							{% endif %}
+						>
+						<span>{{ data.label }}</span>
+					</label>
+				</li>
+			{% endfor %}
+		</ul>
+	</fieldset>
+{% endmacro %}
+
+{% macro checkbox(item) %}
+	<fieldset>
+		<legend>
+			{{ item.label }}
+		</legend>
+		<ul class="flex">
+			{% for data in item.options.data %}
+				<li>
+					<label>
+						<input
+							type="checkbox"
+							name="{{ item.name }}"
+							value="{{ data.value }}"
+							{% for value in item.options.initialValue %}
+								{% if value == data.value %}
+									checked
+								{% endif %}
+							{% endfor %}
+						>
+						<span>{{ data.label }}</span>
+					</label>
+				</li>
+			{% endfor %}
+		</ul>
+	</fieldset>
+{% endmacro %}
+
+{% macro textarea() %}
+
+{% endmacro %}
+
+{% macro select() %}
+{% endmacro %}
+
+{% macro input(item) %}
+	<label>
+		<span>{{ item.label }}</span>
+		<input
+			class="block border"
+			type="{{ item.type }}">
+	</label>
+
+{% endmacro %}
+
+{% macro field(item) %}
+	<div>
+		{% if item.type == 'radio' %}
+			{{ radio(item) }}
+		{% elseif item.type == 'checkbox' %}
+			{{ checkbox(item) }}
+		{% elseif item.type == 'select' %}
+		{% elseif item.type == 'textarea' %}
+		{% else %}
+			{{ input(item) }}
+		{% endif %}
+	</div>
+{% endmacro %}
+
+<div x-data="form">
+
+	{#<template x-for="fieldItem in formFields">
+		<div>
+			<template x-if="fieldItem.type === 'radio'">
+				<div>
+					a
+				</div>
+			</template>
+			<template x-if="fieldItem.type === 'checkbox'">
+				<div>
+					b
+				</div>
+			</template>
+		</div>
+	</template>#}
+
+	<div class="space-y-8">
+		{% for fieldItem in form.configDefault.fields %}
+
+			{% if fieldItem[0] %}
+				<div class="flex space-x-4">
+					{% for child in fieldItem %}
+						{{ field(child) }}
+					{% endfor %}
+				</div>
+			{% else %}
+				<div>
+					{{ field(fieldItem) }}
+				</div>
+			{% endif %}
+
+		{% endfor %}
+	</div>
+</div>

@@ -1,9 +1,22 @@
 const httpProxy = require("http-proxy");
+const path = require("path");
+const requireGlob = require('require-glob');
+
+function copyFormConfigFiles(eleventyConfig) {
+	const ROOT = __dirname;
+	const CONFIG_DIR = "/src/scripts/form";
+
+	eleventyConfig.addGlobalData("form", async () => {
+		return await requireGlob(path.join(ROOT, CONFIG_DIR, "config.*.json"));
+	});
+
+}
 
 module.exports = (eleventyConfig) => {
 	eleventyConfig.addGlobalData("layout", "base");
 	eleventyConfig.addGlobalData("env", process.env.ELEVENTY_ENV);
 
+	// eleventyConfig.setWatchThrottleWaitTime(200);
 	eleventyConfig.setBrowserSyncConfig({
 		callbacks: {
 			ready: function (_err, browserSync) {
@@ -15,6 +28,13 @@ module.exports = (eleventyConfig) => {
 			},
 		},
 	});
+
+	copyFormConfigFiles(eleventyConfig);
+
+	// Parse static dir on production.
+	if (process.env.ELEVENTY_ENV === "production") {
+		eleventyConfig.addPassthroughCopy({ static: "." });
+	}
 
 	return {
 		dir: {

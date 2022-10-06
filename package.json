@@ -24,16 +24,19 @@
 		"camelcase": "^7.0.0",
 		"concurrently": "^7.3.0",
 		"cross-env": "^7.0.3",
+		"glob": "^8.0.3",
 		"http-proxy": "^1.18.1",
 		"liquidjs": "^9.42.0",
 		"postcss": "^8.4.16",
 		"prettier": "^2.7.1",
+		"require-glob": "^4.1.0",
 		"rimraf": "^3.0.2",
 		"tailwindcss": "^3.1.8",
 		"vite": "^3.0.9"
 	},
 	"dependencies": {
 		"@alpinejs/collapse": "^3.10.3",
-		"alpinejs": "^3.10.3"
+		"alpinejs": "^3.10.3",
+		"just-clone": "^6.1.1"
 	}
 }

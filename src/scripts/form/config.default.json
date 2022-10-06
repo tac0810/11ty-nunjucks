@@ -1,0 +1,147 @@
+{
+	"meta": {
+		"title": "Foo"
+	},
+	"replies": {
+		"admin": ["admin@example.com", "info@example.com"]
+	},
+	"overrides": {
+		"errorMessages": {},
+		"rules": {
+			"phone": ""
+		}
+	},
+	"fields": [
+		{
+			"type": "select",
+			"label": "Select_input",
+			"name": "select_input",
+			"validations": ["required", "min:2", "max:5"],
+			"options": {
+				"data": [
+					{
+						"label": "選択してください",
+						"value": ""
+					},
+					{
+						"label": "#1 option",
+						"value": "1"
+					},
+					{
+						"label": "#2 option",
+						"value": "2"
+					},
+					{
+						"label": "#3 option",
+						"value": "3"
+					},
+					{
+						"label": "#4 option",
+						"value": "4"
+					},
+					{
+						"label": "#5 option",
+						"value": "5"
+					}
+				],
+				"dependsOn": {
+					"tel": {
+						"shows": ["1", "5"]
+					},
+					"email": {
+						"ignores": ["3", "4"]
+					},
+					"re_email": {
+						"ignores": ["3", "4"]
+					}
+				}
+			}
+		},
+		{
+			"type": "radio",
+			"label": "Radio_input",
+			"name": "radio_input",
+			"validations": ["required"],
+			"options": {
+				"initialValue": "2",
+				"data": [
+					{
+						"label": "#1 Radio",
+						"value": "1"
+					},
+					{
+						"label": "#2 Radio",
+						"value": "2"
+					},
+					{
+						"label": "#3 Radio",
+						"value": "3"
+					},
+					{
+						"label": "#4 Radio",
+						"value": "4"
+					}
+				]
+			}
+		},
+		{
+			"type": "checkbox",
+			"label": "Checkbox_input",
+			"name": "checkbox_input",
+			"validations": ["required", "min:2"],
+			"options": {
+				"initialValue": ["2", "4"],
+				"data": [
+					{
+						"label": "#1 Checkbox",
+						"value": "1"
+					},
+					{
+						"label": "#2 Checkbox",
+						"value": "2"
+					},
+					{
+						"label": "#3 Checkbox",
+						"value": "3"
+					},
+					{
+						"label": "#4 Checkbox",
+						"value": "4"
+					}
+				]
+			}
+		},
+		[
+			{
+				"type": "text",
+				"label": "Last_name",
+				"name": "last_name",
+				"validations": ["required", "min:2", "max:5"]
+			},
+			{
+				"type": "text",
+				"label": "First_name",
+				"name": "first_name",
+				"validations": ["required"]
+			}
+		],
+		{
+			"type": "email",
+			"label": "User_email",
+			"name": "user_email",
+			"validations": ["required", "email"]
+		},
+		{
+			"type": "email",
+			"label": "Re_email",
+			"name": "re_email",
+			"validations": ["required", "email", "same:user_email"]
+		},
+		{
+			"type": "tel",
+			"label": "User_tel",
+			"name": "user_tel",
+			"validations": ["required", "phone"]
+		}
+	]
+}
